@@ -52,7 +52,7 @@ def register():
             salt_length=8
         )
         time_user = request.form.get("time")
-        time = db.session.execute(db.select(Times).where(Times.nome == time_user)).scalar()
+        time = db.session.execute(db.select(Times).where(Times.time == time_user)).scalar()
 
         if time is None:
             new_time = Times(
