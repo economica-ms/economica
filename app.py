@@ -107,7 +107,7 @@ class Krs(db.Model):
 
 
 class Times(db.Model):
-    id: Mapped[int] = mapped_column(Integer(250), primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     time: Mapped[str] = mapped_column(String(250))
 
 
