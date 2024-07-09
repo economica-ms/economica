@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session, app, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_bootstrap import Bootstrap4
+from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 #from flask_wtf import FlaskForm
 #from wtforms import StringField, IntegerField, FloatField, DecimalField, PasswordField, SubmitField
@@ -107,7 +107,7 @@ class Krs(db.Model):
 
 
 class Times(db.Model):
-    id: Mapped[str] = mapped_column(String(250), primary_key=True)
+    id: Mapped[int] = mapped_column(Integer(250), primary_key=True)
     time: Mapped[str] = mapped_column(String(250))
 
 

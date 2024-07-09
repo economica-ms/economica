@@ -53,35 +53,25 @@ def register():
         )
         time_user = request.form.get("time")
         time = db.session.execute(db.select(Times).where(Times.time == time_user)).scalar()
-
         if time is None:
             new_time = Times(
                 time=time_user
             )
             db.session.add(new_time)
-            new_user = User(
-                email=request.form.get('email'),
-                password=hash_and_salted_password,
-                name=request.form.get('name'),
-                admin=request.form.get('admin'),
-                mesa=request.form.get('mesa'),
-                id_time=new_time.id,
-                time=time_user
-            )
-            db.session.add(new_user)
             db.session.commit()
-        else:
-            new_user = User(
-                email=request.form.get('email'),
-                password=hash_and_salted_password,
-                name=request.form.get('name'),
-                admin=request.form.get('admin'),
-                mesa=request.form.get('mesa'),
-                id_time=time.id,
-                time=time.time
-            )
-            db.session.add(new_user)
-            db.session.commit()
+
+        new_user = User(
+            email=request.form.get('email'),
+            password=hash_and_salted_password,
+            name=request.form.get('name'),
+            admin=request.form.get('admin'),
+            mesa=request.form.get('mesa'),
+            id_time=time_user,
+            time=time_user
+        )
+        db.session.add(new_user)
+        db.session.commit()
+
         login_user(new_user)
         session['user_id'] = new_user.id
         session["user_name"] = new_user.name
