@@ -338,6 +338,19 @@ def perfil():
     return render_template("perfil.html", user_name=user_name, user=user)
 
 
+@app.route('/perfil_setores', methods=["POST"])
+@login_required
+def perfil_setores():
+    novo_setor = Setores(
+        id_time=request.form['id_time'],
+        time=request.form['time'],
+        nome=request.form['novo_setor']
+    )
+    db.session.add(novo_setor)
+    db.session.commit()
+    return redirect(url_for('perfil'))
+
+
 @app.route('/okr', methods=["POST", "GET"])
 @login_required
 def okr():

@@ -24,4 +24,24 @@
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
     </form>
 </div>
+<hr>
+<br>
+<div class="container">
+    {% if user.admin == 1 %}
+    <h2>Adicionar Setores</h2>
+    <form action="{{ url_for('perfil_setores') }}" method="post">
+        <div class="form-group">
+            <input type="hidden" class="form-control" name="id_time" value="{{ user.id_time }}">
+            <input type="hidden" class="form-control" name="time" value="{{ user.time }}">
+        </div>
+        <div class="form-group">
+            <label for="name">Nome do Novo Setor:</label>
+            <input type="text" class="form-control" id="novo_setor" name="nome">
+        </div>
+
+        <br>
+        <button type="submit" class="btn btn-primary">Adicionar Setor</button>
+    </form>
+    {% endif %}
+</div>
 {% endblock %}
