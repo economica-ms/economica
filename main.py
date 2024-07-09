@@ -56,7 +56,7 @@ def register():
 
         if time is None:
             new_time = Times(
-                time=time
+                time=time_user
             )
             db.session.add(new_time)
             new_user = User(
@@ -66,7 +66,7 @@ def register():
                 admin=request.form.get('admin'),
                 mesa=request.form.get('mesa'),
                 id_time=new_time.id,
-                time=new_time.time
+                time=time_user
             )
             db.session.add(new_user)
             db.session.commit()
